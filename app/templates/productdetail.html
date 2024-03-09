@@ -1,0 +1,261 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+@media all and (min-width: 508px) {
+	.previewPane{
+				width:500px;
+        		height:400px;
+	}
+}
+
+@media not all and (min-width: 508px) {
+    .previewPane{
+				width:310px;
+        		height:300px;
+	}
+	.product-info-aside{
+		position: center;
+	}
+}
+</style>
+<!-- <style>
+	@media (min-width: 1260px) { 
+   .lala{
+	 width: 80%;
+	 padding-left: 90px;
+	 
+   }
+} -->
+ 
+ </style>
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content bg-white padding-y lala">
+<div class="container">
+
+<!-- ============================ ITEM DETAIL ======================== -->
+	<div class="row">
+		<aside class="col-md-6">
+<div class="card">
+<article class=" img-big-wrap"> 
+
+
+	<div class="size previewPane"></div><div id="zoomer"></div>
+		<div class="thumbs-wrap">
+			<img class="imgkey" src="{{products.image.url}}">
+			<img class="imgkey" src="{{products.image2.url}}">
+			<img class="imgkey" src="{{products.image1.url}}">
+		</div>
+
+
+	<!-- <div class="img-big-wrap">
+	  <div> <a href="#"><img src=""></a></div>
+
+	</div> 
+	<div class="thumbs-wrap">
+	  <a href="#" class=""> <img src=""></a>
+	  <a href="#" class="item-thumb"> <img src=""></a>
+	  <a href="#" class="item-thumb"> <img src="{{products.image.url}}"></a>
+	</div>  -->
+</article> <!-- gallery-wrap .end// -->
+</div> <!-- card.// -->
+		</aside>
+		<main class="col-md-6">
+<article class="product-info-aside">
+
+<h2 class="title mt-3">{{products.brand}} </h2>
+
+<div class="rating-wrap my-3">
+	<ul class="rating-stars">
+		<li style="width:80%" class="stars-active"> 
+			<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+			<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+			<i class="fa fa-star"></i> 
+		</li>
+		<li>
+			<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+			<i class="fa fa-star"></i> <i class="fa fa-star"></i> 
+			<i class="fa fa-star"></i> 
+		</li>
+	</ul>
+	<small class="label-rating text-muted00px;}
+    .previewPane{
+        /* display:inline-block; */
+        width:500px;">132 reviews</small>
+	<small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 orders </small>
+</div> <!-- rating-wrap.// -->
+
+<div class="mb-3"> 
+	<var class="price h4">Rs : {{products.discount_price}}</var> 
+	 <del style="color:red;padding-top: 60px; margin-left: 10px;" href="" class="title">Rs.{{products.price}}</del>
+	<span class="text-muted"></span> 
+</div> <!-- price-detail-wrap .// -->
+
+<p>{{products.name}} </p>
+
+
+<dl class="row">
+  <dt class="col-sm-3 col-6">Manufacturer</dt>
+  <dd class="col-sm-9 col-6"><a href="#">Great textile Ltd.</a></dd>
+
+  <dt class="col-sm-3 col-6">Article number</dt>
+  <dd class="col-sm-9 col-6">596 065</dd>
+
+  <dt class="col-sm-3 col-6">Guarantee</dt>
+  <dd class="col-sm-9 col-6">2 year</dd>
+
+  <dt class="col-sm-3 col-6">Delivery time</dt>
+  <dd class="col-sm-9 col-6">3-4 days</dd>
+
+  <dt class="col-sm-3 col-6">Availabilty</dt>
+  <dd class="col-sm-9 col-6">{{products.stock}}</dd>
+</dl>
+
+	<!-- row.// -->
+
+
+	{% if products.stock < 1 %}
+	<h4> <a href="" style="margin-left: 20px; color:orangered;" class="title">Out off stock</a></h4>
+	 {% else %}
+
+	 
+	 <br>
+
+
+
+	
+
+
+	<div class="form-row d-flex col-md-12  mt-4 ">
+		
+		
+        <div class="form-group col-md-3">
+
+     
+		{% if products.name in carts %}
+		<a href="/show_cart"><button class="btn btn-primary " value ="{{products.id}}"><i class="fa "> Show Cart </i> </button></a>
+		{% else %}
+		<button class="btn btn-primary addcart" id="add{{products.id}}" value ="{{products.id}}"><i class="fa "> Add to Cart </i> </button></a>
+		
+		<a href="/show_cart">	<button class="btn btn-primary " style="display: none;" id="show{{products.id}}" value ="{{products.id}}"><i class="fa "> Show Cart </i> </button></a>
+		{% endif %}
+	  </div>
+
+		<div class="form-group col-md-3">
+			<!-- <a href="/cart?id={{products.id}}"  class="btn  btn-primary"> 
+				<i class="fas fa-shopping-cart"></i> <span class="text">Add to cart</span> 
+			</a> -->
+			{% if found %}
+			
+			<a href="{% url 'buynow' %}?id={{products.id}}"  class="btn  btn-success"> 
+				<i class="fas fa-shopping-cart"></i> <span class="text">Buy Now</span> 
+			</a>
+			{% else %}
+			<a href="/login"  class="btn  btn-success"> 
+				<i class="fas fa-shopping-cart"></i> <span class="text">Buy Now</span> 
+			</a>
+
+			{% endif %}
+			
+		</div> <!-- col.// -->
+	</div>
+	
+	{% endif %}
+</article> <!-- product-info-aside .// -->
+<!-- col.// -->
+	</div> <!-- row.// -->
+
+<!-- ================ ITEM DETAIL END .// ================= -->
+
+
+</div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+<!-- ========================= SECTION  ========================= -->
+<section class="section-name padding-y bg">
+<div class="container">
+
+<div class="row">
+	<div class="col-md-8">
+		
+	</div> <!-- col.// -->
+	
+	
+
+
+	 <!-- col.// -->
+</div> <!-- row.// -->
+
+</div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+
+<!-- ========================= SECTION SUBSCRIBE  ========================= -->
+
+<!-- ========================= SECTION SUBSCRIBE END// ========================= -->
+
+<style>
+    .imgkey{
+        width:100px;
+        height:100px;}
+    .previewPane{
+        /* display:inline-block; */
+       
+        cursor:crosshair;
+        margin-right: 20rem;
+        background-size:100% 100%}
+    #zoomer{
+        background: #fff;
+        display:none;
+        background-repeat:no-repeat;
+        width:900px;
+        height:950px;
+        z-index: 1000;
+        position: fixed;
+        left:45%;
+        top: 13%;
+    }
+</style>
+<script>
+    $(function(){
+    $('.previewPane, #zoomer').css('background-image','url('+$('.imgkey').first().attr('src')+')');
+    $('.imgkey').click(function(){
+    $('.previewPane').css('background-image','url('+$(this).attr('src')+')');
+                });
+    $('.previewPane').mousemove(function(ev){
+    $('#zoomer').css('display','inline-block');
+    var img = $(this).css('background-image').replace(/^url\(['"](.+)['"]\)/, '$1');
+    var posX = ev.offsetX ? (ev.offsetX) : ev.pageX - $(this).offset().left;
+    var posY = ev.offsetY ? (ev.offsetY) : ev.pageY - $(this).offset().top;
+    $('#zoomer').css('background-position',((-posX ) + "px " + (-posY ) + "px"));
+    $('#zoomer').css('background-image','url('+img+')');
+                });
+    $('.previewPane').mouseleave(function(){$('#zoomer').css('display','none');});
+            });
+</script>
+<script>
+	$(document).on('click','.addcart',function(){
+	  var id = $(this).val()
+	  console.log(id)
+	  $.ajax({
+		url:"{% url 'add_to_cart' %}",
+		type : 'GET',
+		data : {
+		  id : id
+		},
+		dataType:'json',
+		success:function(res){
+		  if(res.f==0){
+		  $('#show'+id).show()
+		  $('#add'+id).hide()
+		  }
+		}
+	  })
+	})
+  </script>
+
+{% endblock %}

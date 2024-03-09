@@ -1,0 +1,163 @@
+
+<section class="section-pagetop bg-gray">
+<div class="container">
+	<h2 class="title-page">Checkout</h2>
+</div> 
+</section>
+
+
+
+
+<section class="section-content padding-y">
+<div class="container">
+
+<div class="row">
+	 
+	<main class="col-md-9">
+
+		<article class="card mb-4">
+	
+
+		<div class="card-body">
+
+			<div class="row"> 
+        {% if buynow %}
+		{% url 'address1' %}?id={{i.id}}
+			 <a href="" style="font-weight: 700;font-size: 10px;" class="btn btn-outline-primary">Add Address</a> 
+		{% endif %}
+      </div>
+			 
+			 
+			
+			<div class="row"> 
+			{% if details %}
+			{% for i in  details %}
+				<div class="col-md-4">
+					<h6 class="text-muted">Delivery to</h6>
+					<p>{{i.user}} <br>  
+					 
+			    	{{i.locality}},{{i.city}}, <br> 
+			    	pincode:{{i.pincode}}<br>
+					+91 {{i.user.number}}
+					
+			 		</p>
+				<form action="/order" method="get">
+					{% csrf_token %}
+				<div class="form-check mt-2 mb-5">
+					<input class="form-check-input" value="{{i.id}}" type="radio" id="custadd{{forloop.counter}}" name="custid" >
+					<label style="margin-left: 6px;" for="" class="form-check-input">Address : {{forloop.counter}}</label>
+				</div>
+			
+			</div>	
+				 {% endfor %}
+				 {% else %}
+				 <div class="col-md-4">
+                    <p class="text-danger " style="font-size: 20px; font-weight: 600;"> Please Enter your address </p>
+				 </div>
+				 {% endif %}
+				
+			</div> 
+				</div>
+		</article> 
+
+          
+		
+
+
+	</main> 
+	
+	
+	<main class="col-md-3">
+		
+		<div class="card">
+			<div class="card-body">
+				<h3>The Total Price:</h3>
+					<dl class="dlist-align">
+					  <dt>Total price:</dt>
+					  <dd class="text-right" id="sumTotal">{{total}}</dd>
+					</dl>
+					<dl class="dlist-align">
+					  <dt>Shipping:</dt>
+					  <dd class="text-right text-success">Free</dd>
+					</dl>
+					<dl class="dlist-align">
+					  <dt>Total:</dt>
+					  <dd class="text-right  h5" id="grantTotal"><strong>{{total}}</strong></dd>
+					</dl>
+					<hr>
+					
+					
+			</div>			
+			
+			
+		<a href=""><button type="submit" style=" margin-bottom: 10px;" class="btn btn-primary">cash on delivary</button></a>
+		
+		<div id="paypal-button-container"></div>
+	    </form>
+		</div>
+	 </main>   
+	 
+	 
+
+	 <main class="col-md-9">
+	 <div class="table-responsive">
+		
+		<table class="table table-hover">
+            <thead>
+                
+                <tr>
+                    <td>
+                        <p class="title mb-0">Image </p>
+                    </td>
+                    <td> 
+                        <p class="title mb-0">Name & <br> Brand </p>
+                        
+                    </td>
+                    <td>  Quantity </td>
+                    <td>  Price</td>
+                    
+                        
+                    </td>
+                </tr>
+
+            </thead>
+			<tbody>
+        {% if buynow %}
+			<tr>
+				<td>
+					<img src="{{buynow.image.url}}" class="img-xs border">
+				</td>
+				<td> 
+					<p class="title mb-0">{{buynow.product.name}} </p>
+					<var class="price text-muted">{{buynow.brand}}</var>
+				</td>
+            <td>  1 </td>
+				<td>  {{buynow.price}} </td>
+				
+					
+				</td>
+			</tr>
+     {% endif %}
+
+		</tbody></table>
+	
+		</div>
+		</main>
+
+
+
+</div>
+
+</div> 
+</section>
+
+
+ 
+
+    
+    <script src="https://www.paypal.com/sdk/js?client-id=AWxGn2AY2b8N6tIcHg2UXpowkHByWa2yMBehr_wJeKB4TxS5oJHbq6itecd45sbGY5LbLRQ94FSZxuNl&currency=USD"></script>
+
+    <script>
+      
+    </script>
+

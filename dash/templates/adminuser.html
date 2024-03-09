@@ -1,0 +1,91 @@
+{% extends 'adminbase.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="http://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<script>
+$(document).ready(function(){
+$('#example').DataTable();
+});
+</script>
+<table id="example" class="table table-dark">
+    <thead>
+      <tr>
+       
+        <th scope="col">username</th>
+        <th scope="col">name</th>
+        <th scope="col"> Email</th>
+        <th scope="col">phone </th>
+        <th scope="col">Statues </th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for user in user %}
+      <tr>
+        <th scope="col">{{user.username}}</th>
+        <th scope="col">{{user.first_name}}</th>
+        <th scope="col"> {{user.email}}</th>
+        <th scope="col">{{user.number}} </th>
+        <th scope="col">
+            {% if user.is_active %}
+                    <!-- Button trigger modal -->
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal{{user.id}}">
+  Active
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal{{user.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" style="color: blue;" id="exampleModalLabel">Are you Sure to Block </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+       <a href="{% url 'block' %}?id={{user.id}}"> <button type="button" class="btn btn-danger">Confirm </button></a>
+        
+      </div>
+    </div>
+  </div>
+</div> 
+            
+            {% else %}
+                             <!-- Button trigger modal -->
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{user.id}}">
+  Not Active
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal{{user.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" style="color: blue;" id="exampleModalLabel">Are you Sure to Unblock </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+       <a href="{% url 'block' %}?id={{user.id}}"> <button type="button" class="btn btn-danger">Confirm </button></a>
+        
+      </div>
+    </div>
+  </div>
+</div> 
+            {% endif %}
+        
+         </th>
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+  
+  {% endblock content  %}

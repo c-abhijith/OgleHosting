@@ -1,0 +1,10 @@
+djangoenv
+ven/
+venv/
+ */__pycache__/
+app/__pycache__/
+app/migrations/
+dash/__pycache__/
+dash/migration
+dash/migrations/
+media/
