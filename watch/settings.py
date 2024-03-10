@@ -87,16 +87,22 @@ WSGI_APPLICATION = 'watch.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'ogle',  
+#         'USER': 'postgres',  
+#         'PASSWORD': 'postgres',  
+#         'HOST': 'localhost',  
+#         'PORT': '5432', 
+#     }
+# }
+
+import dj_database_url
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ogle',  
-        'USER': 'postgres',  
-        'PASSWORD': 'postgres',  
-        'HOST': 'localhost',  
-        'PORT': '5432', 
-    }
-}
+    'default': dj_database_url.parse('postgres://oogle_user:BgGrxfTZJeqCu0rUuaDCCGE812b9PSfC@dpg-cnmrk3o21fec7398lo00-a.oregon-postgres.render.com/oogle')}
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
