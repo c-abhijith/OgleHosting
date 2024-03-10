@@ -30,11 +30,11 @@ ALLOWED_HOSTS = ['*']
 
 import environ
 
-env = environ.Env()
+# env = environ.Env()
 
 # Load environment variables from a .env file
-env_file = Path(__file__).resolve().parent.parent / '.env'
-environ.Env.read_env(env_file)
+# env_file = Path(__file__).resolve().parent.parent / '.env'
+# environ.Env.read_env(env_file)
 
 
 # Application definition
